@@ -6,10 +6,6 @@ app.config['SECRET_KEY'] = 'secret!'
 
 socketio = SocketIO(app)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 @socketio.on('my event')
 def test(self):
     emit('ok', {'data': 'success'})
