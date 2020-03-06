@@ -1,4 +1,4 @@
-## Le Chat
+## Chat
 
 ### Setup
 
