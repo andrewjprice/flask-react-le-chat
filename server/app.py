@@ -7,10 +7,9 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 @socketio.on('message')
-def message(message):
+def send_message(message):
     print(message)
-    send("success", broadcast=True)
-    return None
+    send(message, broadcast=True)
 
 if __name__ == '__main__':
     socketio.run(app)

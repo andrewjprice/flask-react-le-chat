@@ -1,29 +1,57 @@
 import React from 'react';
 import io from 'socket.io-client';
+import MessageDisplay from './components/MessageDisplay';
+
+const socket = io();
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { response: '' };
+    this.state = {
+      messages: [],
+      message: ''
+    };
   }
 
   componentDidMount() {
-    const socket = io();
-    socket.on('connect', () => {
-      socket.emit('message', {data: 'I\'m connected!'});
-      socket.on('message', (msg) => {
-        console.log(msg);
-        this.setState({ response: msg });
-      })
-    });
+    this.socketListeners();
+  }
+
+  socketListeners() {
+    socket.on('message', (message) => {
+      console.log(message);
+      this.setState({ messages: [...this.state.messages, message] });
+    })
+  }
+
+  sendMessage = (message) => {
+    socket.emit('message', message)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.sendMessage(this.state.message);
+    this.setState({ message: '' });
+  }
+
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ message: value });
   }
 
   render() {
-    const { response } = this.state;
+    const { messages } = this.state;
     return(
       <div>
-        <h1>Le Chat</h1>
-        <p>Response: {response}</p>
+        <MessageDisplay messages={messages} />
+        <form onSubmit={this.handleSubmit}>
+          <input
+              type='text'
+              placeholder='send a message..'
+              value={this.state.message}
+              onChange={this.handleChange}
+          />
+        </form>
       </div>
     )
   }
