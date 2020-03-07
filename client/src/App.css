@@ -4,6 +4,7 @@
 
 .chat-window {
   margin-bottom: 1rem;
+  padding: 5px;
   width: 40rem;
   height: 10rem;
   border-style: solid;

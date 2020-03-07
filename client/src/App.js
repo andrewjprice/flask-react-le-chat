@@ -1,6 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 import MessageDisplay from './components/MessageDisplay';
+import InputBar from './components/InputBar';
 import './App.css';
 
 const socket = io();
@@ -9,8 +10,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      messages: [],
-      message: ''
+      messages: []
     };
   }
 
@@ -29,15 +29,8 @@ class App extends React.Component {
     socket.emit('message', message)
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.sendMessage(this.state.message);
-    this.setState({ message: '' });
-  }
-
-  handleChange = (e) => {
-    const { value } = e.target;
-    this.setState({ message: value });
+  handleSubmit = (message) => {
+    this.sendMessage(message);
   }
 
   render() {
@@ -45,17 +38,7 @@ class App extends React.Component {
     return(
       <div class="container">
         <MessageDisplay messages={messages} />
-        <div class="input-container">
-          <form onSubmit={this.handleSubmit}>
-            <input
-                class="input-bar"
-                type='text'
-                placeholder='send a message..'
-                value={this.state.message}
-                onChange={this.handleChange}
-            />
-          </form>
-        </div>
+        <InputBar handleSubmit={this.handleSubmit} />
       </div>
     )
   }
