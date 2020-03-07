@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import './../App.css';
 
 function MessageDisplay(props) {
     const { messages } = props;
@@ -9,7 +10,7 @@ function MessageDisplay(props) {
         )
     })
     return (
-        <div>
+        <div class="chat-window">
             {messagesList}
         </div>
     )

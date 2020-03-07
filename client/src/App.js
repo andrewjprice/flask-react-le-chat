@@ -1,6 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 import MessageDisplay from './components/MessageDisplay';
+import './App.css';
 
 const socket = io();
 
@@ -42,16 +43,19 @@ class App extends React.Component {
   render() {
     const { messages } = this.state;
     return(
-      <div>
+      <div class="container">
         <MessageDisplay messages={messages} />
-        <form onSubmit={this.handleSubmit}>
-          <input
-              type='text'
-              placeholder='send a message..'
-              value={this.state.message}
-              onChange={this.handleChange}
-          />
-        </form>
+        <div class="input-container">
+          <form onSubmit={this.handleSubmit}>
+            <input
+                class="input-bar"
+                type='text'
+                placeholder='send a message..'
+                value={this.state.message}
+                onChange={this.handleChange}
+            />
+          </form>
+        </div>
       </div>
     )
   }
