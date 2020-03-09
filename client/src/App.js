@@ -36,9 +36,12 @@ class App extends React.Component {
   render() {
     const { messages } = this.state;
     return(
-      <div class="container">
-        <MessageDisplay messages={messages} />
-        <InputBar handleSubmit={this.handleSubmit} />
+      <div class="window">
+        <div class="side-bar"></div>
+        <div class="container">
+          <MessageDisplay messages={messages} />
+          <InputBar handleSubmit={this.handleSubmit} />
+        </div>
       </div>
     )
   }

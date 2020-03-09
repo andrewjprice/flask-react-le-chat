@@ -3,7 +3,7 @@ import React from 'react';
 function Message(props) {
     const { message } = props;
     return (
-        <p>{message}</p>
+        <p class="bubble-text">{message}</p>
     )
 }
 
