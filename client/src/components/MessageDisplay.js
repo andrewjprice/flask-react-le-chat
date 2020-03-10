@@ -10,7 +10,7 @@ function MessageDisplay(props) {
         )
     })
     return (
-        <div class="chat-window">
+        <div className="chat-window">
             {messagesList}
         </div>
     )

@@ -17,10 +17,10 @@ function InputBar(props) {
     }
 
     return (
-        <div class="input-container">
+        <div className="input-container">
           <form onSubmit={onSubmit}>
             <input
-                class="input-bar"
+                className="input-bar"
                 type='text'
                 placeholder='press enter to send message'
                 value={message}
