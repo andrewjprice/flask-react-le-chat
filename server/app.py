@@ -8,17 +8,17 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 @socketio.on('send_message')
 def send_message(message):
-    send(message, broadcast=True)
+    emit('send_message', message, broadcast=True)
 
 @socketio.on('register_user')
 def register_user(data):
     user = data['username']
-    emit('register_user', {'user': user}, broadcast=True)
+    emit('register_user', user, broadcast=True)
 
 @socketio.on('unregister_user')
 def unregister_user(data):
     user = data['username']
-    emit('unregister_user', {'user': user}, broadcast=True)
+    emit('unregister_user', user, broadcast=True)
 
 if __name__ == '__main__':
     socketio.run(app)

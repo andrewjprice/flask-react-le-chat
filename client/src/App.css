@@ -29,6 +29,7 @@
   height: 95%;
   width: 100%;
   border-bottom: solid;
+  border-left: solid;
   overflow: scroll;
 }
 

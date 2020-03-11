@@ -3,6 +3,8 @@ import io from 'socket.io-client';
 import MessageDisplay from './components/MessageDisplay';
 import InputBar from './components/InputBar';
 import JoinChatModal from './components/JoinChatModal';
+import UserListDisplay from './components/UserListDisplay';
+
 import './App.css';
 
 const socket = io();
@@ -22,8 +24,11 @@ class App extends React.Component {
 
   socketListeners() {
     socket.on('send_message', (message) => {
-      console.log(message);
       this.setState({ messages: [...this.state.messages, message] });
+    })
+
+    socket.on('register_user', (user) => {
+      this.setState({ users: [...this.state.users, user] });
     })
   }
 
@@ -36,7 +41,7 @@ class App extends React.Component {
   }
 
   enterChat = (username) => {
-    this.setState({ users: [...this.state.users, username] });
+    socket.emit('register_user', {'username': username})
   }
 
   render() {
@@ -44,7 +49,7 @@ class App extends React.Component {
     return(
       <div>
         <div className="window">
-          <div className="side-bar">{users}</div>
+          <UserListDisplay users={users} />
           <div className="container">
             <MessageDisplay messages={messages} />
             <InputBar handleSubmit={this.handleSubmit} />

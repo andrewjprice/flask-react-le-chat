@@ -9,6 +9,7 @@ function MessageDisplay(props) {
             <Message message={msg} key={i} />
         )
     })
+
     return (
         <div className="chat-window">
             {messagesList}
