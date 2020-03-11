@@ -7,8 +7,10 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 @socketio.on('send_message')
-def send_message(message):
-    emit('send_message', message, broadcast=True)
+def send_message(data):
+    message = data['message']
+    user = data['user']
+    emit('send_message', {'user': user, 'message': message}, broadcast=True)
 
 @socketio.on('register_user')
 def register_user(data):

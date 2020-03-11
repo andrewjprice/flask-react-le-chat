@@ -14,7 +14,8 @@ class App extends React.Component {
     super();
     this.state = {
       messages: [],
-      users: []
+      users: [],
+      current_user: ''
     };
   }
 
@@ -23,8 +24,10 @@ class App extends React.Component {
   }
 
   socketListeners() {
-    socket.on('send_message', (message) => {
-      this.setState({ messages: [...this.state.messages, message] });
+    socket.on('send_message', (data) => {
+      const message = data['message'];
+      const user = data['user'];
+      this.setState({ messages: [...this.state.messages, [user, message]] });
     })
 
     socket.on('register_user', (user) => {
@@ -33,7 +36,7 @@ class App extends React.Component {
   }
 
   sendMessage = (message) => {
-    socket.emit('send_message', message)
+    socket.emit('send_message', {'user': this.state.current_user, 'message': message})
   }
 
   handleSubmit = (message) => {
@@ -42,6 +45,7 @@ class App extends React.Component {
 
   enterChat = (username) => {
     socket.emit('register_user', {'username': username})
+    this.setState({ current_user: username });
   }
 
   render() {

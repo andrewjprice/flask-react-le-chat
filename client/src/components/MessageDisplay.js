@@ -4,9 +4,10 @@ import './../App.css';
 
 function MessageDisplay(props) {
     const { messages } = props;
-    const messagesList = messages.map((msg,i) => {
+
+    const messagesList = messages.map((message,i) => {
         return (
-            <Message message={msg} key={i} />
+            <Message message={message} key={i} />
         )
     })
 
