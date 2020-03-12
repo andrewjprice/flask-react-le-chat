@@ -18,7 +18,7 @@ function InputBar(props) {
 
     return (
         <div className="input-container">
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="input-form">
             <input
                 className="input-bar"
                 type='text'

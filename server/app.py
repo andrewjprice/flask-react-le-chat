@@ -13,13 +13,11 @@ def send_message(data):
     emit('send_message', {'user': user, 'message': message}, broadcast=True)
 
 @socketio.on('register_user')
-def register_user(data):
-    user = data['username']
+def register_user(user):
     emit('register_user', user, broadcast=True)
 
 @socketio.on('unregister_user')
-def unregister_user(data):
-    user = data['username']
+def unregister_user(user):
     emit('unregister_user', user, broadcast=True)
 
 if __name__ == '__main__':

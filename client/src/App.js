@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   enterChat = (username) => {
-    socket.emit('register_user', {'username': username})
+    socket.emit('register_user', username)
     this.setState({ current_user: username });
   }
 
@@ -53,7 +53,9 @@ class App extends React.Component {
     return(
       <div>
         <div className="window">
-          <UserListDisplay users={users} />
+          <div className="user-list">
+            <UserListDisplay users={users} />
+          </div>
           <div className="container">
             <MessageDisplay messages={messages} />
             <InputBar handleSubmit={this.handleSubmit} />

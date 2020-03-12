@@ -11,7 +11,10 @@ function UserListDisplay(props) {
 
     return (
         <div>
-            {usersList}
+            <h2 className="text-center">Users</h2>
+            <div className="pad-10">
+                {usersList}
+            </div>
         </div>
     )
 }

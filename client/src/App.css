@@ -1,11 +1,15 @@
+.text-center {
+  text-align: center;
+}
+
 .window {
   position: relative;
   height: 30rem;
   width: 40rem;
   margin: 1rem;
   padding: 1rem;
-  border-style: solid;
-  border-radius: 1.5em 1.5em 0 0;
+  border-style: groove;
+  border-radius: 1.5em;
 }
 
 .side-bar {
@@ -25,28 +29,35 @@
   top: 0;
 }
 
+.user-list {
+  height: 100%;
+  width: 25%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: solid 1px black;
+}
+
 .chat-window {
-  height: 95%;
+  height: 90%;
   width: 100%;
-  border-bottom: solid;
-  border-left: solid;
+  border-left: solid 1px black;
   overflow: scroll;
 }
 
 .input-container {
-  height: 5%;
+  height: 10%;
   width: 100%;
 }
 
+.input-form {
+  margin: 10px;
+}
+
 .input-bar {
-  box-sizing: border-box;
   padding: 5px;
   height: 100%;
-  width: 100%;
-  border-top: none;
-  border-left: solid;
-  border-right: none;
-  border-bottom: none;
+  width: 95%;
 }
 
 .bubble-text {
