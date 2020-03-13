@@ -19,8 +19,17 @@ class App extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("beforeunload", this.disconnect);
+  }
+
   componentDidMount() {
+    window.addEventListener("beforeunload", this.disconnect);
     this.socketListeners();
+  }
+
+  disconnect = (e) => {
+    socket.emit('unregister_user', { 'user': this.state.current_user });
   }
 
   socketListeners() {
@@ -30,8 +39,14 @@ class App extends React.Component {
       this.setState({ messages: [...this.state.messages, [user, message]] });
     })
 
-    socket.on('register_user', (user) => {
-      this.setState({ users: [...this.state.users, user] });
+    socket.on('register_user', (data) => {
+      const users = data['users'];
+      this.setState({ users: users });
+    })
+
+    socket.on('unregister_user', (data) => {
+      const users = data['users'];
+      this.setState({ users: users });
     })
   }
 

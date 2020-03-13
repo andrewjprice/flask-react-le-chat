@@ -6,6 +6,8 @@ app.config['SECRET_KEY'] = 'secret!'
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
+users = []
+
 @socketio.on('send_message')
 def send_message(data):
     message = data['message']
@@ -14,11 +16,17 @@ def send_message(data):
 
 @socketio.on('register_user')
 def register_user(user):
-    emit('register_user', user, broadcast=True)
+    if user not in users:
+        users.append(user)
+        emit('register_user', { 'users': users }, broadcast=True)
 
 @socketio.on('unregister_user')
-def unregister_user(user):
-    emit('unregister_user', user, broadcast=True)
+def unregister_user(data):
+    user = data['user']
+    print(user + ' disconnected from chat')
+    if user in users:
+        users.remove(user)
+    emit('unregister_user', { 'users': users }, broadcast=True)
 
 if __name__ == '__main__':
     socketio.run(app)
