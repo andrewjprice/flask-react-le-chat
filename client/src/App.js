@@ -14,8 +14,8 @@ class App extends React.Component {
     super();
     this.state = {
       messages: [],
-      users: [],
-      current_user: ''
+      users: JSON.parse(sessionStorage.getItem('users', '')) || [],
+      current_user: sessionStorage.getItem('current_user' || '')
     };
   }
 
@@ -42,11 +42,13 @@ class App extends React.Component {
     socket.on('register_user', (data) => {
       const users = data['users'];
       this.setState({ users: users });
+      sessionStorage.setItem('users', JSON.stringify(users));
     })
 
     socket.on('unregister_user', (data) => {
       const users = data['users'];
       this.setState({ users: users });
+      sessionStorage.setItem('users', JSON.stringify(users));
     })
   }
 
@@ -60,11 +62,12 @@ class App extends React.Component {
 
   enterChat = (username) => {
     socket.emit('register_user', username)
+    sessionStorage.setItem('current_user', username);
     this.setState({ current_user: username });
   }
 
   render() {
-    const { messages, users } = this.state;
+    const { messages, users, current_user } = this.state;
     return(
       <div>
         <div className="window">
@@ -76,7 +79,7 @@ class App extends React.Component {
             <InputBar handleSubmit={this.handleSubmit} />
           </div>
         </div>
-        <JoinChatModal enterChat={this.enterChat} />
+        <JoinChatModal current_user={current_user} enterChat={this.enterChat} />
       </div>
     )
   }

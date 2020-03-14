@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 function JoinChatModal(props) {
-    const [ showModal, setShowModal ] = useState(true);
-    const { enterChat } = props;
+    const { enterChat, current_user } = props;
+    const [ showModal, setShowModal ] = useState(current_user == null);
 
     const onSubmit = (e) => {
         const { value } = e.target[0];

@@ -23,7 +23,6 @@ def register_user(user):
 @socketio.on('unregister_user')
 def unregister_user(data):
     user = data['user']
-    print(user + ' disconnected from chat')
     if user in users:
         users.remove(user)
     emit('unregister_user', { 'users': users }, broadcast=True)
