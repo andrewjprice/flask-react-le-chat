@@ -8,8 +8,6 @@
   width: 40rem;
   margin: 1rem;
   padding: 1rem;
-  border-style: groove;
-  border-radius: 1.5em;
 }
 
 .side-bar {
@@ -27,9 +25,13 @@
   position: absolute;
   right: 0;
   top: 0;
+  border-left: solid silver;
 }
 
 .user-list {
+  background:#085596;
+  border-radius: 1.5rem 0 0 1.5rem;
+  color:white;
   height: 100%;
   width: 25%;
   position: absolute;
@@ -39,14 +41,21 @@
 }
 
 .chat-window {
+  top: 0;
+  position: absolute;
+  border-bottom: solid silver;
+  background:white;
+  border-radius: 0 1.5rem 0 0;
   height: 90%;
   width: 100%;
-  border-left: solid 1px black;
   overflow: scroll;
 }
 
 .input-container {
-  height: 10%;
+  bottom: 0;
+  position: absolute;
+  background:white;
+  border-radius: 0 0 1.5rem 0;
   width: 100%;
 }
 
