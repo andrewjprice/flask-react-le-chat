@@ -3,7 +3,10 @@ import React from 'react';
 function UserDisplay(props) {
     const { user } = props;
     return(
-        <p>{user}</p>
+        <div>
+            <div className="user"></div>
+            <p>{user}</p>
+        </div>
     )
 }
 

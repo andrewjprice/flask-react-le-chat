@@ -3,7 +3,10 @@ import React from 'react';
 function Message(props) {
     const { message } = props;
     return (
-        <p className="bubble-text">{message[0]}: {message[1]}</p>
+        <div className="message-container">
+            <p className="message-bubble">{message[1]}</p>
+            <p className="message-user">{message[0]}</p>
+        </div>
     )
 }
 
