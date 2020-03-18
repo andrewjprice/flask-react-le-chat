@@ -20,14 +20,14 @@ def send_message(data):
 def register_user(user):
     if user not in users:
         users.append(user)
-        emit('register_user', { 'users': users }, broadcast=True)
+        emit('register_user', { 'users': users, 'user': user }, broadcast=True)
 
 @socketio.on('unregister_user')
 def unregister_user(data):
     user = data['user']
     if user in users:
         users.remove(user)
-    emit('unregister_user', { 'users': users }, broadcast=True)
+    emit('unregister_user', { 'users': users, 'user': user }, broadcast=True)
 
 if __name__ == '__main__':
     socketio.run(app)

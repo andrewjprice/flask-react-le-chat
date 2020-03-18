@@ -2,15 +2,24 @@ import React from 'react';
 
 function Message(props) {
     const { message } = props;
-    return (
-        <div className="message-container">
-            <p className="message-bubble">{message[1]}</p>
-            <div className="message-info">
-                <p className="message">{message[0]}</p>
-                <p className="message">{message[2]}</p>
+
+    if (message[3]) {
+        return (
+            <div className="registered-user-container">
+                <p className="message">{message[3]}</p>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <div className="message-container">
+                <p className="message-bubble">{message[0]}</p>
+                <div className="message-info">
+                    <p className="message">{message[1]}</p>
+                    <p className="message">{message[2]}</p>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default Message;

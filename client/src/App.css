@@ -136,3 +136,8 @@
 .message-container {
   padding: 10px;
 }
+
+.registered-user-container {
+  text-align: center;
+  padding-left: 10px;
+}
