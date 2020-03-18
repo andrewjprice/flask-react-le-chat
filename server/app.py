@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send, join_room, leave_room
 
@@ -12,7 +13,8 @@ users = []
 def send_message(data):
     message = data['message']
     user = data['user']
-    emit('send_message', {'user': user, 'message': message}, broadcast=True)
+    current_time = datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
+    emit('send_message', {'user': user, 'message': message, 'time': current_time}, broadcast=True)
 
 @socketio.on('register_user')
 def register_user(user):

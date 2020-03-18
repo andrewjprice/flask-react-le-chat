@@ -104,6 +104,8 @@
 	background: #e6f2ff;
   border-radius: .4em;
   color:black;
+  word-wrap: anywhere;
+  margin: 0;
 }
 
 .message-bubble:after {
@@ -121,9 +123,14 @@
 	margin-bottom: -10px;
 }
 
-.message-user {
+.message-info {
+  display: flex;
+}
+
+.message {
   font-style: italic;
   font-size: 12px;
+  padding-right: 5px;
 }
 
 .message-container {

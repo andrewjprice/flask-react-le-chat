@@ -34,9 +34,8 @@ class App extends React.Component {
 
   socketListeners() {
     socket.on('send_message', (data) => {
-      const message = data['message'];
-      const user = data['user'];
-      this.setState({ messages: [...this.state.messages, [user, message]] });
+      const { message, user, time } = data;
+      this.setState({ messages: [...this.state.messages, [user, message, time]] });
     })
 
     socket.on('register_user', (data) => {
