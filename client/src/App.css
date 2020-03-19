@@ -144,8 +144,9 @@
 
 .user-display {
   display: flex;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-start;
+  margin: 0 1rem;
+  text-overflow: ellipsis;
 }
 
 .dot {
@@ -156,4 +157,17 @@
   background-color:lightgreen;
   border-radius: 50%;
   display: inline-block;
+}
+
+.username {
+  min-width: 0px;
+}
+
+.username-text {
+  overflow-wrap: break-word;
+  margin: 5px auto;
+}
+
+.online-status {
+  margin: 5px;
 }

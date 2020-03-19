@@ -4,8 +4,8 @@ function UserDisplay(props) {
     const { user } = props;
     return(
         <div className="user-display">
-            <span className="dot"></span>
-            <p>{user}</p>
+            <div className="online-status"><span className="dot"></span></div>
+            <div className="username"><p className="username-text">{user}</p></div>
         </div>
     )
 }

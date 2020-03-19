@@ -12,7 +12,7 @@ function UserListDisplay(props) {
     return (
         <div>
             <h2 className="text-center">Online</h2>
-            <div className="text-center">
+            <div>
                 {usersList}
             </div>
         </div>
