@@ -13,7 +13,9 @@ function MessageDisplay(props) {
 
     return (
         <div className="chat-window">
-            {messagesList}
+            <div className="chat-container">
+                {messagesList}
+            </div>
         </div>
     )
 }

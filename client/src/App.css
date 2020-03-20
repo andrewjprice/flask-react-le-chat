@@ -41,8 +41,11 @@
 }
 
 .chat-window {
-  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
   position: absolute;
+  top: 0;
   border-bottom: solid silver;
   background:white;
   border-radius: 0 1.5rem 0 0;
@@ -170,4 +173,8 @@
 
 .online-status {
   margin: 5px;
+}
+
+.chat-container {
+  min-height: 100px;
 }
