@@ -35,18 +35,18 @@ class App extends React.Component {
   socketListeners() {
     socket.on('send_message', (data) => {
       const { message, user, time } = data;
-      this.setState({ messages: [...this.state.messages, [message, user, time]] });
+      this.setState({ messages: [...this.state.messages, {'message': message, 'user': user, 'time': time}] });
     })
 
     socket.on('register_user', (data) => {
       const { users, user } = data;
-      this.setState({ users: users, messages: [...this.state.messages, ['', '', '', `${user} has entered the chat.`]] });
+      this.setState({ users: users, messages: [...this.state.messages, {'status': `${user} has entered the chat.`}] });
       sessionStorage.setItem('users', JSON.stringify(users));
     })
 
     socket.on('unregister_user', (data) => {
       const { users, user } = data;
-      this.setState({ users: users, messages: [...this.state.messages, ['', '', '', `${user} has left the chat.`]] });
+      this.setState({ users: users, messages: [...this.state.messages, {'status': `${user} has left the chat.`}] });
       sessionStorage.setItem('users', JSON.stringify(users));
     })
   }

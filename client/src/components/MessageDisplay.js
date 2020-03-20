@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Message from './Message';
+import MessageBubble from './MessageBubble';
 import './../App.css';
 
 function MessageDisplay(props) {
@@ -12,10 +13,16 @@ function MessageDisplay(props) {
 
     useEffect(scrollToBottom, [messages]);
 
-    const messagesList = messages.map((message,i) => {
-        return (
-            <Message message={message} key={i} />
-        )
+    const messagesList = messages.map((obj,i) => {
+        if (obj['message']) {
+            return (
+                <MessageBubble messageObj={obj} key={i} />
+            )
+        } else {
+            return (
+                <Message message={obj['status']} key={i} />
+            )
+        }
     })
 
     return (
