@@ -126,6 +126,41 @@
 	margin-bottom: -10px;
 }
 
+.user-bubble {
+  display: table;
+  padding: 10px;
+	position: relative;
+	background: #0060de;
+  border-radius: .4em;
+  color:white;
+  word-wrap: anywhere;
+  margin: 0;
+  margin-left: auto;
+}
+
+.user-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-top-color: #0060de;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -5px;
+	margin-bottom: -10px;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
 .message-info {
   display: flex;
 }
@@ -138,6 +173,10 @@
 
 .message-container {
   padding: 10px;
+}
+
+.m-left-auto {
+  margin-left: auto;
 }
 
 .registered-user-container {
@@ -176,5 +215,7 @@
 }
 
 .chat-container {
+  display: flex;
+  flex-direction: column;
   min-height: 0px;
 }

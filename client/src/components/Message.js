@@ -1,5 +1,4 @@
 import React from 'react';
-import MessageBubble from './MessageBubble';
 
 function Message(props) {
     const { message } = props;

@@ -35,7 +35,7 @@ class App extends React.Component {
   socketListeners() {
     socket.on('send_message', (data) => {
       const { message, user, time } = data;
-      this.setState({ messages: [...this.state.messages, {'message': message, 'user': user, 'time': time}] });
+      this.setState({ messages: [...this.state.messages, {'message': message, 'user': user, 'time': time }] });
     })
 
     socket.on('register_user', (data) => {
@@ -74,7 +74,7 @@ class App extends React.Component {
             <UserListDisplay users={users} />
           </div>
           <div className="container">
-            <MessageDisplay messages={messages} />
+            <MessageDisplay messages={messages} current_user={current_user} />
             <InputBar handleSubmit={this.handleSubmit} />
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Message from './Message';
-import MessageBubble from './MessageBubble';
+import UserMessage from './UserMessage';
 import './../App.css';
 
 function MessageDisplay(props) {
-    const { messages } = props;
+    const { messages, current_user } = props;
     const endMessagesRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -16,7 +16,7 @@ function MessageDisplay(props) {
     const messagesList = messages.map((obj,i) => {
         if (obj['message']) {
             return (
-                <MessageBubble messageObj={obj} key={i} />
+                <UserMessage messageObj={obj} current_user={current_user} key={i} />
             )
         } else {
             return (
