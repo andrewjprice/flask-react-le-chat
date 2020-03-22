@@ -9,6 +9,10 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 users = []
 
+@socketio.on('connect')
+def on_connect():
+    emit('retrieve_users', { 'users': users }, broadcast=True)
+
 @socketio.on('send_message')
 def send_message(data):
     message = data['message']

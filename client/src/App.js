@@ -33,6 +33,11 @@ class App extends React.Component {
   }
 
   socketListeners() {
+    socket.on('retrieve_users', (data) => {
+      const { users } = data;
+      this.setState({ users: users });
+    })
+
     socket.on('send_message', (data) => {
       const { message, user, time } = data;
       this.setState({ messages: [...this.state.messages, {'message': message, 'user': user, 'time': time }] });
@@ -78,7 +83,7 @@ class App extends React.Component {
             <InputBar handleSubmit={this.handleSubmit} />
           </div>
         </div>
-        <JoinChatModal current_user={current_user} enterChat={this.enterChat} />
+        <JoinChatModal users={users} current_user={current_user} enterChat={this.enterChat} />
       </div>
     )
   }

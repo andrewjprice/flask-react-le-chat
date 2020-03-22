@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 
 function JoinChatModal(props) {
-    const { enterChat, current_user } = props;
+    const { enterChat, current_user, users } = props;
     const [ showModal, setShowModal ] = useState(current_user == null);
 
     const onSubmit = (e) => {
         const { value } = e.target[0];
-        enterChat(value);
-        setShowModal(!showModal);
+        if (value === '') {
+            alert('Username required to enter.');
+            e.preventDefault();
+        }
+        else if (users.indexOf(value) > -1) {
+            alert('Username already exists.');
+            e.preventDefault();
+        } else {
+            enterChat(value);
+            setShowModal(!showModal);
+        }
     }
 
     if (showModal) {

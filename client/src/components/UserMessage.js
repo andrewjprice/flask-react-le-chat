@@ -2,7 +2,7 @@ import React from 'react';
 
 function UserMessage(props) {
     const { messageObj, current_user } = props;
-    if (messageObj['user'] == current_user) {
+    if (messageObj['user'] === current_user) {
         return (
             <div className="message-container m-left-auto">
                 <p className="user-bubble">{messageObj['message']}</p>
