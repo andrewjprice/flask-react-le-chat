@@ -9,8 +9,9 @@ cd server
 pip install -r requirements.txt
 ```
 
-### Run
+### Start server
 
 ```
-flask run
+cd client
+yarn start-server
 ```
