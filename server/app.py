@@ -33,5 +33,9 @@ def unregister_user(data):
         users.remove(user)
     emit('unregister_user', { 'users': users, 'user': user }, broadcast=True)
 
+@socketio.on('typing')
+def typing(data):
+    emit('typing', { 'user': data['user'], 'typing': data['typing'] }, broadcast=True)
+
 if __name__ == '__main__':
     socketio.run(app)

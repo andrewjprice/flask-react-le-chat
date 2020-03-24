@@ -3,11 +3,12 @@ import './../App.css';
 
 function InputBar(props) {
     const [message, setMessage] = useState('');
-    const { handleSubmit } = props;
+    const { handleSubmit, handleTyping } = props;
 
     const handleChange = e => {
         const { value } = e.target;
         setMessage(value);
+        handleTyping();
     }
 
     const onSubmit = (e) => {

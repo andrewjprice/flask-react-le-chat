@@ -219,3 +219,8 @@
   flex-direction: column;
   min-height: 0px;
 }
+
+.typing {
+  font-size: 12px;
+  text-align: center;
+}

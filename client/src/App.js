@@ -15,7 +15,8 @@ class App extends React.Component {
     this.state = {
       messages: [],
       users: JSON.parse(sessionStorage.getItem('users', '')) || [],
-      current_user: sessionStorage.getItem('current_user' || '')
+      current_user: sessionStorage.getItem('current_user' || ''),
+      usersTyping: ''
     };
   }
 
@@ -54,6 +55,15 @@ class App extends React.Component {
       this.setState({ users: users, messages: [...this.state.messages, {'status': `${user} has left the chat.`}] });
       sessionStorage.setItem('users', JSON.stringify(users));
     })
+
+    socket.on('typing', (data) => {
+      const { user, typing } = data;
+      if (typing && user !== this.state.current_user) {
+        this.setState({ usersTyping: `${user} is typing...`});
+      } else {
+        this.setState({ usersTyping: ' ' })
+      }
+    })
   }
 
   sendMessage = (message) => {
@@ -70,8 +80,17 @@ class App extends React.Component {
     this.setState({ current_user: username });
   }
 
+  typingTimeout = () => {
+    socket.emit('typing', { 'user': this.state.current_user, 'typing': false });
+  }
+
+  handleTyping = () => {
+    socket.emit('typing', {'user': this.state.current_user, 'typing': true });
+    setTimeout(this.typingTimeout, 1500)
+  }
+
   render() {
-    const { messages, users, current_user } = this.state;
+    const { messages, users, current_user, usersTyping } = this.state;
     return(
       <div>
         <div className="window">
@@ -79,8 +98,8 @@ class App extends React.Component {
             <UserListDisplay users={users} />
           </div>
           <div className="container">
-            <MessageDisplay messages={messages} current_user={current_user} />
-            <InputBar handleSubmit={this.handleSubmit} />
+            <MessageDisplay messages={messages} current_user={current_user} usersTyping={usersTyping} />
+            <InputBar handleSubmit={this.handleSubmit} handleTyping={this.handleTyping} />
           </div>
         </div>
         <JoinChatModal users={users} current_user={current_user} enterChat={this.enterChat} />

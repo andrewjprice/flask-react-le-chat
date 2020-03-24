@@ -4,7 +4,7 @@ import UserMessage from './UserMessage';
 import './../App.css';
 
 function MessageDisplay(props) {
-    const { messages, current_user } = props;
+    const { messages, current_user, usersTyping } = props;
     const endMessagesRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -29,6 +29,7 @@ function MessageDisplay(props) {
         <div className="chat-window">
             <div className="chat-container">
                 {messagesList}
+                <p className="typing">{usersTyping}</p>
                 <div ref={endMessagesRef}></div>
             </div>
         </div>
