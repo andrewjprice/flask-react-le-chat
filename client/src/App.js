@@ -59,7 +59,7 @@ class App extends React.Component {
     socket.on('typing', (data) => {
       const { user, typing } = data;
       if (typing && user !== this.state.current_user) {
-        this.setState({ usersTyping: `${user} is typing...`});
+        this.setState({ usersTyping: `${user} is typing`});
       } else {
         this.setState({ usersTyping: ' ' })
       }
@@ -86,7 +86,7 @@ class App extends React.Component {
 
   handleTyping = () => {
     socket.emit('typing', {'user': this.state.current_user, 'typing': true });
-    setTimeout(this.typingTimeout, 1500)
+    setTimeout(this.typingTimeout, 4000)
   }
 
   render() {

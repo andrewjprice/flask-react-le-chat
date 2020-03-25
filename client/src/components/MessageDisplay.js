@@ -29,7 +29,9 @@ function MessageDisplay(props) {
         <div className="chat-window">
             <div className="chat-container">
                 {messagesList}
-                <p className="typing">{usersTyping}</p>
+                { usersTyping.length > 1 && 
+                <p className="typing animate">{usersTyping}<span>.</span><span>.</span><span>.</span></p>
+                }
                 <div ref={endMessagesRef}></div>
             </div>
         </div>
