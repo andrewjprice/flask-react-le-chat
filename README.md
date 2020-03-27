@@ -1,5 +1,7 @@
 ## Chat
 
+![](le-chat.gif)
+
 ### Setup
 
 Install dependencies
