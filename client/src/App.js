@@ -86,7 +86,7 @@ class App extends React.Component {
 
   handleTyping = () => {
     socket.emit('typing', {'user': this.state.current_user, 'typing': true });
-    setTimeout(this.typingTimeout, 4000)
+    setTimeout(this.typingTimeout, 2000)
   }
 
   render() {
