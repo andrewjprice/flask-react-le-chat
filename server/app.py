@@ -17,7 +17,7 @@ def on_connect():
 def send_message(data):
     message = data['message']
     user = data['user']
-    current_time = datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')
+    current_time = datetime.datetime.now().strftime('%l:%M %p')
     emit('send_message', {'user': user, 'message': message, 'time': current_time}, broadcast=True)
 
 @socketio.on('register_user')
